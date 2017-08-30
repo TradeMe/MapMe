@@ -3,11 +3,11 @@ package nz.co.trademe.mapme.annotations
 import android.graphics.Bitmap
 import nz.co.trademe.mapme.LatLng
 
-abstract class MarkerAnnotation<in M>(latLng: LatLng,
+abstract class MarkerAnnotation(latLng: LatLng,
                                       title: String? = null,
                                       icon: Bitmap? = null,
                                       zIndex: Float = 0f,
-                                      alpha: Float = 1f) : MapAnnotation<M>() {
+                                      alpha: Float = 1f) : MapAnnotation() {
 
     var latLng: LatLng = latLng
         set(value) {

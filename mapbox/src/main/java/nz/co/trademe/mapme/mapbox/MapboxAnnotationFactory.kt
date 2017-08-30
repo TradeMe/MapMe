@@ -8,7 +8,7 @@ import nz.co.trademe.mapme.annotations.MarkerAnnotation
 
 class MapboxAnnotationFactory : AnnotationFactory<MapboxMap> {
 
-    override fun createMarker(latLng: LatLng, icon: Bitmap?, title: String?): MarkerAnnotation<MapboxMap> {
+    override fun createMarker(latLng: LatLng, icon: Bitmap?, title: String?): MarkerAnnotation {
         return MapboxMarkerAnnotation(latLng, title, icon)
     }
 

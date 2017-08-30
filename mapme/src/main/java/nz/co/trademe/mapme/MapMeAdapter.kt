@@ -16,7 +16,7 @@ abstract class MapMeAdapter<MapType>(var context: Context, var factory: Annotati
 
     var mapView: View? = null
     var map: MapType? = null
-    var annotations: ArrayList<MapAnnotation<MapType>> = ArrayList()
+    var annotations: ArrayList<MapAnnotation> = ArrayList()
     var annotationClickListener: OnMapAnnotationClickListener? = null
     var infoWindowClickListener: OnInfoWindowClickListener? = null
 
@@ -29,9 +29,9 @@ abstract class MapMeAdapter<MapType>(var context: Context, var factory: Annotati
         MapAdapterHelper(this, this.debug)
     }
 
-    abstract fun onCreateAnnotation(factory: AnnotationFactory<@JvmSuppressWildcards MapType>, position: Int, annotationType: Int): MapAnnotation<MapType>
+    abstract fun onCreateAnnotation(factory: AnnotationFactory<@JvmSuppressWildcards MapType>, position: Int, annotationType: Int): MapAnnotation
 
-    abstract fun onBindAnnotation(annotation: MapAnnotation<MapType>, position: Int, payload: Any?)
+    abstract fun onBindAnnotation(annotation: MapAnnotation, position: Int, payload: Any?)
 
     abstract fun getItemCount(): Int
 
@@ -51,11 +51,11 @@ abstract class MapMeAdapter<MapType>(var context: Context, var factory: Annotati
         this.debug = true
     }
 
-    fun setOnAnnotationClickListener(listener: OnMapAnnotationClickListener) {
+    open fun setOnAnnotationClickListener(listener: OnMapAnnotationClickListener) {
         this.annotationClickListener = listener
     }
 
-    fun setOnInfoWindowClickListener(listener: OnInfoWindowClickListener) {
+    open fun setOnInfoWindowClickListener(listener: OnInfoWindowClickListener) {
         this.infoWindowClickListener = listener
     }
 
@@ -101,7 +101,7 @@ abstract class MapMeAdapter<MapType>(var context: Context, var factory: Annotati
 
     }
 
-    open fun onAnnotationAdded(annotation: MapAnnotation<MapType>) {
+    open fun onAnnotationAdded(annotation: MapAnnotation) {
 
     }
 
@@ -155,13 +155,13 @@ abstract class MapMeAdapter<MapType>(var context: Context, var factory: Annotati
         }
     }
 
-    internal fun findAnnotationForPosition(position: Int): MapAnnotation<MapType>? {
+    internal fun findAnnotationForPosition(position: Int): MapAnnotation? {
         return annotations.find { it.position == position }
     }
 
     fun onItemsInserted(positionStart: Int, itemCount: Int) {
         for (position in positionStart until positionStart + itemCount) {
-            this.annotations.add(Placeholder<MapType>().apply { this.position = position })
+            this.annotations.add(Placeholder().apply { this.position = position })
         }
     }
 
@@ -466,7 +466,7 @@ abstract class MapMeAdapter<MapType>(var context: Context, var factory: Annotati
         }
     }
 
-    private fun offsetPosition(annotation: MapAnnotation<MapType>, offset: Int) {
+    private fun offsetPosition(annotation: MapAnnotation, offset: Int) {
         annotation.position += offset
     }
 

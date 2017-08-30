@@ -5,7 +5,7 @@ import nz.co.trademe.mapme.LatLng
 
 interface AnnotationFactory<in Map> {
 
-    fun createMarker(latLng: LatLng, icon: Bitmap?, title: String?): MarkerAnnotation<Map>
+    fun createMarker(latLng: LatLng, icon: Bitmap?, title: String?): MarkerAnnotation
 
     fun clear(map: Map)
 

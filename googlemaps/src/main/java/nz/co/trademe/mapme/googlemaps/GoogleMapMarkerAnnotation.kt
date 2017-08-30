@@ -10,7 +10,7 @@ import nz.co.trademe.mapme.annotations.MarkerAnnotation
 
 class GoogleMapMarkerAnnotation(latLng: LatLng,
                                 title: String?,
-                                icon: Bitmap? = null) : MarkerAnnotation<GoogleMap>(latLng, title, icon) {
+                                icon: Bitmap? = null) : MarkerAnnotation(latLng, title, icon) {
 
     override fun onUpdateIcon(icon: Bitmap?) {
         nativeMarker?.setIcon(icon?.toBitmapDescriptor())
@@ -38,12 +38,14 @@ class GoogleMapMarkerAnnotation(latLng: LatLng,
         return nativeMarker?.equals(objec) ?: false
     }
 
-    override fun removeFromMap(map: GoogleMap, context: Context) {
+    override fun removeFromMap(map: Any, context: Context) {
         nativeMarker?.remove()
         nativeMarker = null
     }
 
-    override fun addToMap(map: GoogleMap, context: Context) {
+    override fun addToMap(map: Any, context: Context) {
+        val googleMap = map as GoogleMap
+
         val options = MarkerOptions()
                 .position(latLng.toGoogleMapsLatLng())
                 .icon(icon?.toBitmapDescriptor())
@@ -51,7 +53,7 @@ class GoogleMapMarkerAnnotation(latLng: LatLng,
                 .alpha(alpha)
                 .zIndex(zIndex)
 
-        nativeMarker = map.addMarker(options)
+        nativeMarker = googleMap.addMarker(options)
     }
 
 }
