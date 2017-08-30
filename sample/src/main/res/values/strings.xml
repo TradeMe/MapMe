@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">MapMe</string>
+    <string name="google_maps">Google Maps</string>
+    <string name="mapbox">MapBox</string>
+    <string name="map_type">Map type</string>
+    <string name="remove">Remove</string>
+    <string name="add_10_markers">Add 10 markers</string>
+    <string name="remove_5">Remove 5</string>
+    <string name="add_5_remove_5">Add 5, remove 5</string>
+    <string name="change_5">Change 5</string>
+    <string name="move_and_change">Move and change</string>
+    <string name="move_and_change_special">Move and change special</string>
+    <string name="detect_moves">Detect moves</string>
+    <string name="recyclerview">RecyclerView</string>
+    <string name="mapme_googlemaps">MapMe - Google Maps</string>
+    <string name="mapme_mapbox">MapMe - Mapbox</string>
+</resources>

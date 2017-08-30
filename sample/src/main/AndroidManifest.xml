@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest package="nz.co.trademe.mapme.sample"
+          xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <application
+        android:name=".SampleApplication"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme">
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/googlemaps_key"/>
+
+        <activity
+            android:name=".activities.GoogleMapsActivity"
+            android:label="@string/mapme_googlemaps"/>
+
+        <activity
+            android:name=".activities.MapBoxActivity"
+            android:label="@string/mapme_mapbox"/>
+
+        <activity
+            android:name=".activities.ChoiceActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
+        <service android:name="com.mapbox.mapboxsdk.telemetry.TelemetryService"/>
+
+    </application>
+
+</manifest>

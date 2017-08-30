@@ -1,0 +1,88 @@
+buildscript {
+    apply from: '../common.gradle'
+
+    repositories {
+        maven {
+            url "https://maven.google.com"
+        }
+        jcenter()
+        mavenLocal()
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:$gradle_version"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply from: '../common.gradle'
+
+android {
+    compileSdkVersion compileSdk
+    buildToolsVersion buildTools
+    defaultConfig {
+        applicationId "nz.co.trademe.mapme.sample"
+        minSdkVersion 21
+        targetSdkVersion compileSdk
+        versionCode 1
+        versionName "1.0"
+
+
+        Properties properties = new Properties()
+        def localPropertiesFile = project.rootProject.file('local.properties')
+        if (localPropertiesFile.exists()) {
+            properties.load(localPropertiesFile.newDataInputStream())
+        }
+
+        if (properties.containsKey("mapboxKey") && properties.containsKey("googleMapsKey")) {
+            project.rootProject.file('local.properties').exists()
+
+            def mapboxKey = properties.getProperty('mapboxKey');
+            def googleMapsKey = properties.getProperty('googleMapsKey');
+
+            resValue "string", "mapbox_key", mapboxKey
+            resValue "string", "googlemaps_key", googleMapsKey
+        } else {
+            resValue "string", "mapbox_key", "enter valid key"
+            resValue "string", "googlemaps_key", "enter valid key"
+            logger.warn("Must declare mapboxKey and googleMapsKey in local.properties")
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    lintOptions {
+        lintConfig new File(rootProject.projectDir, "lint.xml")
+    }
+}
+
+repositories {
+    maven {
+        url "https://maven.google.com"
+    }
+    jcenter()
+}
+
+dependencies {
+    compile 'com.jakewharton.timber:timber:4.5.1'
+    compile 'com.squareup.picasso:picasso:2.5.2'
+
+    compile "com.android.support:appcompat-v7:$android_support_version"
+    compile "com.android.support:design:$android_support_version"
+
+    compile "com.google.android.gms:play-services-maps:$google_play_services_version"
+    compile('com.mapbox.mapboxsdk:mapbox-android-sdk:4.2.2@aar') {
+        transitive = true
+    }
+
+    compile project(':googlemaps')
+    compile project(':mapbox')
+
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+}
