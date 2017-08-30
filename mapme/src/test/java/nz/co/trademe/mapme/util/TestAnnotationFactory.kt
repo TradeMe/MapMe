@@ -11,5 +11,8 @@ class TestAnnotationFactory : nz.co.trademe.mapme.annotations.AnnotationFactory<
 
     override fun setOnMarkerClickListener(map: TestMap, onClick: (marker: Any) -> Boolean) {
     }
+
+    override fun setOnInfoWindowClickListener(map: TestMap, onClick: (marker: Any) -> Boolean) {
+    }
 }
 

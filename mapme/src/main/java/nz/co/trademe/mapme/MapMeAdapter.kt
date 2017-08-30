@@ -7,10 +7,7 @@ import android.support.v7.util.ListUpdateCallback
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.View
-import nz.co.trademe.mapme.annotations.AnnotationFactory
-import nz.co.trademe.mapme.annotations.MapAnnotation
-import nz.co.trademe.mapme.annotations.OnMapAnnotationClickListener
-import nz.co.trademe.mapme.annotations.Placeholder
+import nz.co.trademe.mapme.annotations.*
 
 const val TAG = "MapMeAdapter"
 const val NO_POSITION = -1
@@ -21,6 +18,7 @@ abstract class MapMeAdapter<MapType>(var context: Context, var factory: Annotati
     var map: MapType? = null
     var annotations: ArrayList<MapAnnotation<MapType>> = ArrayList()
     var annotationClickListener: OnMapAnnotationClickListener? = null
+    var infoWindowClickListener: OnInfoWindowClickListener? = null
 
     internal var debug = false
 
@@ -41,6 +39,7 @@ abstract class MapMeAdapter<MapType>(var context: Context, var factory: Annotati
         this.map = map
         this.mapView = mapView
         this.factory.setOnMarkerClickListener(map, { marker -> notifyAnnotatedMarkerClicked(marker) })
+        this.factory.setOnInfoWindowClickListener(map, { marker -> notifyInfowWindowClicked(marker) })
     }
 
     //default implementation
@@ -54,6 +53,10 @@ abstract class MapMeAdapter<MapType>(var context: Context, var factory: Annotati
 
     fun setOnAnnotationClickListener(listener: OnMapAnnotationClickListener) {
         this.annotationClickListener = listener
+    }
+
+    fun setOnInfoWindowClickListener(listener: OnInfoWindowClickListener) {
+        this.infoWindowClickListener = listener
     }
 
     override fun onChanged(position: Int, count: Int, payload: Any?) {
@@ -408,6 +411,20 @@ abstract class MapMeAdapter<MapType>(var context: Context, var factory: Annotati
 
         if (annotation != null) {
             return clickListener.onMapAnnotationClick(annotation)
+        } else {
+            Log.e("MapMeAdapter", "Unable to find an annotation that annotates the marker")
+        }
+        return false
+    }
+
+    @RestrictTo(RestrictTo.Scope.LIBRARY_GROUP)
+    fun notifyInfowWindowClicked(marker: Any): Boolean {
+        val clickListener = infoWindowClickListener ?: return false
+
+        val annotation = annotations.find { it.annotatesObject(marker) }
+
+        if (annotation != null) {
+            return clickListener.onInfoWindowClick(annotation)
         } else {
             Log.e("MapMeAdapter", "Unable to find an annotation that annotates the marker")
         }
