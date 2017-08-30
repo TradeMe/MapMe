@@ -87,14 +87,15 @@ abstract class MapMeAdapter<MapType>(var context: Context, var factory: Annotati
         val annotationType = getItemAnnotationType(position)
         val annotation = onCreateAnnotation(this.factory, position, annotationType)
         annotation.position = position
-        onBindAnnotation(annotation, position, null)
 
         map?.let {
             annotation.addToMap(map!!, context)
             annotations.add(annotation)
+            onBindAnnotation(annotation, position, null)
 
             onAnnotationAdded(annotation)
         }
+
     }
 
     open fun onAnnotationAdded(annotation: MapAnnotation<MapType>) {
