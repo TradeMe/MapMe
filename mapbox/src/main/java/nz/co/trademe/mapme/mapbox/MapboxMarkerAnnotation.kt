@@ -55,6 +55,7 @@ class MapboxMarkerAnnotation(latLng: LatLng,
     override fun addToMap(map: MapboxMap, context: Context) {
         val markerViewOptions = MarkerViewOptions()
                 .icon(icon?.toMapboxIcon(context))
+                .title(title)
                 .position(latLng.toMapBoxLatLng())
         nativeMarker = map.addMarker(markerViewOptions)
     }

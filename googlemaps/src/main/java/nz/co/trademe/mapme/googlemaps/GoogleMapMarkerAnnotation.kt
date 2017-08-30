@@ -47,6 +47,7 @@ class GoogleMapMarkerAnnotation(latLng: LatLng,
         val options = MarkerOptions()
                 .position(latLng.toGoogleMapsLatLng())
                 .icon(icon?.toBitmapDescriptor())
+                .title(title)
                 .alpha(alpha)
                 .zIndex(zIndex)
 
