@@ -1,0 +1,74 @@
+buildscript {
+    apply from: '../common.gradle'
+    repositories {
+        maven {
+            url "https://maven.google.com"
+        }
+        jcenter()
+        mavenLocal()
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:$gradle_version"
+        classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:$bintray_version"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+apply from: '../common.gradle'
+
+ext {
+    name = "MapMe Mapbox"
+}
+
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply from: '../publishing.gradle'
+
+android {
+    compileSdkVersion compileSdk
+    buildToolsVersion buildTools
+
+    defaultConfig {
+        minSdkVersion minSdk
+        targetSdkVersion compileSdk
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    lintOptions {
+        lintConfig new File(rootProject.projectDir, "lint.xml")
+    }
+
+}
+
+configurations.all {
+    resolutionStrategy {
+        force "com.android.support:animated-vector-drawable:$android_support_version"
+        force "com.android.support:appcompat-v7:$android_support_version"
+        force "com.android.support:design:$android_support_version"
+    }
+}
+
+repositories {
+    maven {
+        url "https://maven.google.com"
+    }
+    jcenter()
+}
+
+dependencies {
+    compile('com.mapbox.mapboxsdk:mapbox-android-sdk:4.2.2@aar') {
+        transitive = true
+    }
+
+    compile project(':mapme')
+
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+}

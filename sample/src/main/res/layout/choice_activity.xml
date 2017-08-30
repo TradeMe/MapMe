@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:map="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:orientation="vertical"
+    tools:context="nz.co.trademe.mapme.sample.activities.ChoiceActivity">
+
+    <FrameLayout
+        android:id="@+id/google_maps_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:clickable="true"
+        android:foreground="?selectableItemBackgroundBorderless">
+
+        <fragment
+            android:id="@+id/google_lite_fragment"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:foreground="#22000000"
+            map:cameraTargetLat="-36.8485"
+            map:cameraTargetLng="174.7633"
+            map:cameraZoom="15"
+            map:liteMode="true"
+            map:mapType="normal"
+            map:uiCompass="false"
+            map:uiRotateGestures="false"
+            map:uiScrollGestures="false"
+            map:uiTiltGestures="false"
+            map:uiZoomControls="false"
+            map:uiZoomGestures="false"/>
+
+        <TextView
+            android:id="@+id/google_maps_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="16dp"
+            android:text="@string/google_maps"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"/>
+    </FrameLayout>
+
+
+    <FrameLayout
+        android:id="@+id/mapbox_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:clickable="true"
+        android:foreground="?selectableItemBackgroundBorderless">
+
+        <ImageView
+            android:id="@+id/mapbox_imageview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:foreground="#22000000"
+            android:scaleType="centerCrop"
+            tools:background="#9a5a3a"/>
+
+        <TextView
+            android:id="@+id/mapbox_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/mapbox"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"/>
+    </FrameLayout>
+</LinearLayout>

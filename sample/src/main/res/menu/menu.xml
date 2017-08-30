@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/detect_moves_item"
+        android:checkable="true"
+        android:title="@string/detect_moves"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/add_10_item"
+        android:title="@string/add_10_markers"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/remove_5_item"
+        android:title="@string/remove_5"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/add_5_remove_5_item"
+        android:title="@string/add_5_remove_5"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/change_5_item"
+        android:title="@string/change_5"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/move_change"
+        android:title="@string/move_and_change"
+        app:showAsAction="never"/>
+
+</menu>
