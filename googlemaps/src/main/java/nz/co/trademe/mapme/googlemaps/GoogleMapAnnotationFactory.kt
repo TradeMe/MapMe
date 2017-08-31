@@ -19,4 +19,8 @@ class GoogleMapAnnotationFactory : AnnotationFactory<GoogleMap> {
     override fun setOnMarkerClickListener(map: GoogleMap, onClick: (marker: Any) -> Boolean) {
         map.setOnMarkerClickListener { marker -> onClick(marker) }
     }
+
+    override fun setOnInfoWindowClickListener(map: GoogleMap, onClick: (marker: Any) -> Boolean) {
+        map.setOnInfoWindowClickListener { marker -> onClick(marker) }
+    }
 }

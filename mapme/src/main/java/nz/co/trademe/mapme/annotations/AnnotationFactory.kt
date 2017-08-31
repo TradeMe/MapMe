@@ -11,4 +11,6 @@ interface AnnotationFactory<in Map> {
 
     fun setOnMarkerClickListener(map: Map, onClick: (marker: Any) -> Boolean)
 
+    fun setOnInfoWindowClickListener(map: Map, onClick: (marker: Any) -> Boolean)
+
 }
