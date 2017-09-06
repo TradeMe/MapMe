@@ -8,7 +8,7 @@ import nz.co.trademe.mapme.annotations.MarkerAnnotation
 
 class GoogleMapAnnotationFactory : AnnotationFactory<GoogleMap> {
 
-    override fun createMarker(latLng: LatLng, icon: Bitmap?, title: String?): MarkerAnnotation<GoogleMap> {
+    override fun createMarker(latLng: LatLng, icon: Bitmap?, title: String?): MarkerAnnotation {
         return GoogleMapMarkerAnnotation(latLng, title, icon)
     }
 

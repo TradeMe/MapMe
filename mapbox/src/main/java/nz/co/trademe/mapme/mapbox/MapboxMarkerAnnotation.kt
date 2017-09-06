@@ -12,7 +12,7 @@ import nz.co.trademe.mapme.annotations.MarkerAnnotation
 
 class MapboxMarkerAnnotation(latLng: LatLng,
                              title: String?,
-                             icon: Bitmap? = null) : MarkerAnnotation<MapboxMap>(latLng, title, icon) {
+                             icon: Bitmap? = null) : MarkerAnnotation(latLng, title, icon) {
 
 
     override fun onUpdateIcon(icon: Bitmap?) {
@@ -47,17 +47,18 @@ class MapboxMarkerAnnotation(latLng: LatLng,
         return nativeMarker?.equals(objec) ?: false
     }
 
-    override fun removeFromMap(map: MapboxMap, context: Context) {
+    override fun removeFromMap(map: Any, context: Context) {
         nativeMarker?.remove()
         nativeMarker = null
     }
 
-    override fun addToMap(map: MapboxMap, context: Context) {
+    override fun addToMap(map: Any, context: Context) {
+        val mapboxMap = map as MapboxMap
         val markerViewOptions = MarkerViewOptions()
                 .icon(icon?.toMapboxIcon(context))
                 .title(title)
                 .position(latLng.toMapBoxLatLng())
-        nativeMarker = map.addMarker(markerViewOptions)
+        nativeMarker = mapboxMap.addMarker(markerViewOptions)
     }
 
 }

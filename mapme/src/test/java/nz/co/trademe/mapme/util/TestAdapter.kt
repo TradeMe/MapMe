@@ -19,12 +19,12 @@ open class TestAdapter(val items: List<TestItem>, myContext: Context, myFactory:
     @SuppressLint("NewApi")
     val phaser = Phaser().apply { register() }
 
-    override fun onCreateAnnotation(factory: AnnotationFactory<TestMap>, position: Int, viewType: Int): MapAnnotation<TestMap> {
+    override fun onCreateAnnotation(factory: AnnotationFactory<TestMap>, position: Int, viewType: Int): MapAnnotation {
         createCount++
         return TestAnnotation()
     }
 
-    override fun onBindAnnotation(annotation: MapAnnotation<TestMap>, position: Int, payload: Any?) {
+    override fun onBindAnnotation(annotation: MapAnnotation, position: Int, payload: Any?) {
         val testData = items[position]
         (annotation as MarkerAnnotation).zIndex = testData.zIndex
 

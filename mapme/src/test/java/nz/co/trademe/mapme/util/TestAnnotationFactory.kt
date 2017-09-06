@@ -2,7 +2,7 @@ package nz.co.trademe.mapme.util
 
 class TestAnnotationFactory : nz.co.trademe.mapme.annotations.AnnotationFactory<TestMap> {
 
-    override fun createMarker(latLng: nz.co.trademe.mapme.LatLng, icon: android.graphics.Bitmap?, title: String?): nz.co.trademe.mapme.annotations.MarkerAnnotation<TestMap> {
+    override fun createMarker(latLng: nz.co.trademe.mapme.LatLng, icon: android.graphics.Bitmap?, title: String?): nz.co.trademe.mapme.annotations.MarkerAnnotation {
         return TestAnnotation()
     }
 

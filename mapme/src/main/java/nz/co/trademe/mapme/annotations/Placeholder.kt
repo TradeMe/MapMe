@@ -11,7 +11,7 @@ import android.content.Context
  * have been applied. This causes issues where createAnnotation is called with a position that is
  * out of bounds.
  */
-internal class Placeholder<in MapType> : MapAnnotation<MapType>() {
+internal class Placeholder : MapAnnotation() {
 
     init {
         this.placeholder = true
@@ -21,9 +21,9 @@ internal class Placeholder<in MapType> : MapAnnotation<MapType>() {
         return false
     }
 
-    override fun addToMap(map: MapType, context: Context) {
+    override fun addToMap(map: Any, context: Context) {
     }
 
-    override fun removeFromMap(map: MapType, context: Context) {
+    override fun removeFromMap(map: Any, context: Context) {
     }
 }
