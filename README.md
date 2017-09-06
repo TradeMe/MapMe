@@ -12,13 +12,13 @@ Download
 
 ```groovy
 //base dependency
-compile 'nz.co.trademe.mapme:mapme:1.0.0'
+compile 'nz.co.trademe.mapme:mapme:1.0.1'
   
 //for Google Maps support
-compile 'nz.co.trademe.mapme:googlemaps:1.0.0'
+compile 'nz.co.trademe.mapme:googlemaps:1.0.1'
   
 //for Mapbox support
-compile 'nz.co.trademe.mapme:mapbox:1.0.0'
+compile 'nz.co.trademe.mapme:mapbox:1.0.1'
 
 ```
 
@@ -37,13 +37,13 @@ public class MapsAdapter extends GoogleMapMeAdapter {
     }
   
     @Override
-    public MapAnnotation<GoogleMap> onCreateAnnotation(AnnotationFactory<GoogleMap> factory, int position, int annotationType) {
+    public MapAnnotation onCreateAnnotation(AnnotationFactory factory, int position, int annotationType) {
         MarkerData item = this.markers.get(position);
         return factory.createMarker(item.getLatLng(), null, item.getTitle());
     }
   
     @Override
-    public void onBindAnnotation(MapAnnotation<? super GoogleMap> annotation, int position, Object payload) {
+    public void onBindAnnotation(MapAnnotation annotation, int position, Object payload) {
         if (annotation instanceof MarkerAnnotation) {
             
             MarkerData item = this.markers.get(position);
