@@ -1,4 +1,4 @@
-ext.version = "1.0.1"
+ext.version = "1.0.2-SNAPSHOT"
 ext.group = "nz.co.trademe.mapme"
 ext.scm = 'https://github.com/TradeMe/MapMe.git'
 ext.description = 'MapMe is an Android library that brings the adapter pattern to Maps, simplifying the management of markers and annotations.'
