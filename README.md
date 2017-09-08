@@ -26,65 +26,120 @@ Usage
 -----
 A simple MapsAdapter might look like this:
 
-```java
-public class MapsAdapter extends GoogleMapMeAdapter {
-  
-    private final List<MarkerData> markers;
-  
-    public MapsAdapter(Context context, List<MarkerData> markers) {
-        super(context);
-        this.markers = markers;
+```kotlin
+class MapsAdapter(context: Context, private val markers: List<MarkerData>) : GoogleMapMeAdapter(context) {
+
+    fun onCreateAnnotation(factory: AnnotationFactory, position: Int, annotationType: Int): MapAnnotation {
+        val item = this.markers[position]
+        return factory.createMarker(item.getLatLng(), null, item.getTitle())
     }
-  
-    @Override
-    public MapAnnotation onCreateAnnotation(AnnotationFactory factory, int position, int annotationType) {
-        MarkerData item = this.markers.get(position);
-        return factory.createMarker(item.getLatLng(), null, item.getTitle());
-    }
-  
-    @Override
-    public void onBindAnnotation(MapAnnotation annotation, int position, Object payload) {
-        if (annotation instanceof MarkerAnnotation) {
-            
-            MarkerData item = this.markers.get(position);
-            ((MarkerAnnotation) annotation).setTitle(item.getTitle());
+
+    fun onBindAnnotation(annotation: MapAnnotation, position: Int, payload: Any) {
+        if (annotation is MarkerAnnotation) {
+            val item = this.markers[position]
+            annotation.setTitle(item.getTitle())
         }
     }
-  
-    @Override
-    public int getItemCount() {
-        return markers.size();
-    }
+
+    val itemCount: Int
+        get() = markers.size()
 }
 
 ```
 
 Using the adapter in your view:
 
-```java
+```kotlin
+val adapter: MapMeAdapter = GoogleMapMeAdapter(context, items)
+adapter.setOnAnnotationClickListener(this)
 
-MapMeAdapter adapter = new GoogleMapMeAdapter(context, items);
-adapter.setOnAnnotationClickListener(this);
-  
-mapView.getMapAsync(new OnMapReadyCallback() {
-            @Override
-            public void onMapReady(@NonNull GoogleMap googleMap) {              
-                //Attach the adapter to the map view once it's initialized
-                adapter.attach(mapView, googleMap);
-            }
+mapView.getMapAsync { googleMap ->
+    //Attach the adapter to the map view once it's initialized
+    adapter.attach(mapView, googleMap)
 }
 ```
 
-More complex adapters can override **getItemAnnotationType** to work with multiple annotations.
+Dispatch data updates to the adapter:
 
-Why the adapter pattern?
+```kotlin
+// add new data and tell the adapter about it
+
+items.addAll(myData)
+adapter.notifyDataSetChanged()
+
+// or with DiffUtil
+
+val diff = DiffUtil.calculateDiff(myDiffCallback)
+diff.dispatchUpdatesTo(adapter)
+```
+
+
+Click listeners
+-----
+MapMe takes the pain out of click listeners too. No more setting tags on markers and trying to match a tag to your data when the click event is received.
+
+MapMe has a `setOnAnnotationClickListener` method that will pass back a `MapAnnotation` containing the position of the item in the list of data:
+
+```Kotlin
+mapsAdapter.setOnAnnotationClickListener(OnMapAnnotationClickListener { annotation ->
+            //retrieve the data item based on the position
+            val item = myData[annotation.position]
+            
+            //handle item click here
+            
+            true
+        })
+
+```
+
+**Info window** clicks are handled in the same way.
+
+Animations
 -----
 
-Working with a few map markers is simple, but working with hundreds can become a mess of spaghetti code. 
+While MapMe doesn't handle marker animations directly, it does provide a `onAnnotationAdded` method on the adapter that is called when a marker is added to the map.
 
-The adapter pattern provides a clear separation of data from the view, allowing the data to be manipulated freely without the concern of updating the view.
+This is the ideal place to start an animation.
 
-## DiffUtil
+
+For example, the following animates a markers alpha when it is added to the map:
+
+
+```
+override fun onAnnotationAdded(annotation: MapAnnotation) {
+        if (annotation !is MarkerAnnotation) return
+
+        ObjectAnimator.ofFloat(annotation, "alpha", 0f, 1f)
+                .apply {
+                    duration = 150
+                    interpolator = DecelerateInterpolator()
+                    start()
+               }
+}
+```  
+    
+
+Markers and Annotations
+-----
+MapMe is based around the concept of Annotations. An annotation is anything displayed on the map.
+
+The only annotation currently supported is Markers. We hope to support many more in the future.
+
+*We'd love PR's adding support for more annotations!*
+
+
+### Multiple annotation types
+More complex adapters can override `getItemAnnotationType` to work with multiple annotations. The annotation type is passed to `onCreateAnnotation` just like in a RecyclerView Adapter.
+
+
+### AnnotationFactory
+MapMe differs from list adapters in that the creation of annotations must be left up to the map as they are not standard Android views.
+
+The MapAdapter **onCreateAnnotation** method provides an **AnnotationFactory** as a parameter that must be used to create and return Map Annotations.
+
+
+DiffUtil
+-----
 As well as support for standard Adapter methods such as *notifyDataSetChanged*, and *notifyItemInserted*, MapMe supports (and recommends) DiffUtil.
 
 DiffUtil is where the true power of MapMe comes into play. Simple manipulate the data set, calculate the diff and dispatch it to MapMe. The map will instantly reflect the data.
@@ -96,22 +151,18 @@ DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(new MarkerDiffCallback(t
 diffResult.dispatchUpdatesTo(mapAdapter);
 ```
 
-Markers and Annotations
+
+Why the adapter pattern?
 -----
-MapMe is based around the concept of Annotations. An annotation is anything displayed on the map.
 
-The only annotation currently supported is Markers. We hope to support many more in the future.
+Working with a few map markers is simple, but working with hundreds can become a mess of spaghetti code. 
 
-*We'd love PR's adding support for more annotations!*
+The adapter pattern provides a clear separation of data from the view, allowing the data to be manipulated freely without the concern of updating the view.
 
-
-
-### AnnotationFactory
-MapMe differs from list adapters in that the creation of annotations must be left up to the map as they are not standard Android views.
-
-The MapAdapter **onCreateAnnotation** method provides an **AnnotationFactory** as a parameter that must be used to create and return Map Annotations.
+We think this is a pattern fits perfectly with maps.
 
 
-## Sample
+## Contributing
 
-Check out the sample project for an example
+We love contributions, but make sure to checkout `CONTRIBUTING.MD` first!
+
