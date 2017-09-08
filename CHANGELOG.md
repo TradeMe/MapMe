@@ -1,6 +1,11 @@
 Change Log
 ==========
 
+Version 1.0.2 *(08-09-2017)*
+----------------------------
+
+  * OnAnnotationClickListener and OnInfoWindowClickListener now support SAM conversion
+  
 Version 1.0.1 *(07-09-2017)*
 ----------------------------
 
