@@ -2,6 +2,8 @@
 
 ![MapMe](./img/feature.png)
 
+[ ![Download](https://api.bintray.com/packages/trademe/MapMe/mapme/images/download.svg) ](https://bintray.com/trademe/MapMe/mapme/_latestVersion)
+
 MapMe is an Android library for working with Maps. MapMe brings the adapter pattern to Maps, simplifying the management of markers and annotations.
 
 MapMe supports both [Google Maps](https://developers.google.com/maps/documentation/android-api/) and [Mapbox](https://www.mapbox.com/android-sdk/)
