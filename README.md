@@ -3,7 +3,7 @@
 ![MapMe](./img/feature.png)
 
 [ ![Download](https://api.bintray.com/packages/trademe/MapMe/mapme/images/download.svg) ](https://bintray.com/trademe/MapMe/mapme/_latestVersion)
-[![Build Status](https://travis-ci.org/trademe/MapMe.svg?branch=travis)](https://travis-ci.org/trademe/MapMe)
+[![Build Status](https://travis-ci.org/TradeMe/MapMe.svg?branch=master)](https://travis-ci.org/TradeMe/MapMe)
 
 MapMe is an Android library for working with Maps. MapMe brings the adapter pattern to Maps, simplifying the management of markers and annotations.
 
