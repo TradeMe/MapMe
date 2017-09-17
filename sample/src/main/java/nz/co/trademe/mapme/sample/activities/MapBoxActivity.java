@@ -34,7 +34,7 @@ public class MapBoxActivity extends MapActivity<MapboxMap>
 
         mapView = (MapView) findViewById(R.id.mapview);
         mapView.onCreate(savedInstanceState);
-        mapView.setStyle(Style.LIGHT);
+        mapView.setStyleUrl(Style.LIGHT);
 
         mapView.getMapAsync(this);
     }

@@ -64,7 +64,7 @@ repositories {
 }
 
 dependencies {
-    compile('com.mapbox.mapboxsdk:mapbox-android-sdk:4.2.2@aar') {
+    compile("com.mapbox.mapboxsdk:mapbox-android-sdk:$mapbox_version@aar") {
         transitive = true
     }
 
