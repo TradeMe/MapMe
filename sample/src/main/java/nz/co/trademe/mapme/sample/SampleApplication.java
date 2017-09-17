@@ -2,7 +2,8 @@ package nz.co.trademe.mapme.sample;
 
 import android.app.Application;
 
-import com.mapbox.mapboxsdk.MapboxAccountManager;
+
+import com.mapbox.mapboxsdk.Mapbox;
 
 import timber.log.Timber;
 
@@ -12,6 +13,6 @@ public class SampleApplication extends Application {
     public void onCreate() {
         super.onCreate();
         Timber.plant(new Timber.DebugTree());
-        MapboxAccountManager.start(this, getResources().getString(R.string.mapbox_key));
+        Mapbox.getInstance(this, getResources().getString(R.string.mapbox_key));
     }
 }

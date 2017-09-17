@@ -5,7 +5,7 @@ import android.graphics.Bitmap
 import android.util.Log
 import com.mapbox.mapboxsdk.annotations.IconFactory
 import com.mapbox.mapboxsdk.annotations.Marker
-import com.mapbox.mapboxsdk.annotations.MarkerViewOptions
+import com.mapbox.mapboxsdk.annotations.MarkerOptions
 import com.mapbox.mapboxsdk.maps.MapboxMap
 import nz.co.trademe.mapme.LatLng
 import nz.co.trademe.mapme.annotations.MarkerAnnotation
@@ -54,11 +54,11 @@ class MapboxMarkerAnnotation(latLng: LatLng,
 
     override fun addToMap(map: Any, context: Context) {
         val mapboxMap = map as MapboxMap
-        val markerViewOptions = MarkerViewOptions()
+        val markerOptions = MarkerOptions()
                 .icon(icon?.toMapboxIcon(context))
                 .title(title)
                 .position(latLng.toMapBoxLatLng())
-        nativeMarker = mapboxMap.addMarker(markerViewOptions)
+        nativeMarker = mapboxMap.addMarker(markerOptions)
     }
 
 }

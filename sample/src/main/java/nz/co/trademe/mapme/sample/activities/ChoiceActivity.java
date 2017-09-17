@@ -5,10 +5,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.mapbox.mapboxsdk.MapboxAccountManager;
+import com.mapbox.mapboxsdk.Mapbox;
 import com.mapbox.services.Constants;
-import com.mapbox.services.commons.ServicesException;
-import com.mapbox.services.staticimage.v1.MapboxStaticImage;
+import com.mapbox.services.api.ServicesException;
+import com.mapbox.services.api.staticimage.v1.MapboxStaticImage;
 import com.squareup.picasso.Picasso;
 
 import nz.co.trademe.mapme.sample.R;
@@ -40,7 +40,7 @@ public class ChoiceActivity extends AppCompatActivity {
 
         try {
             MapboxStaticImage staticImage = new MapboxStaticImage.Builder()
-                    .setAccessToken(MapboxAccountManager.getInstance().getAccessToken())
+                    .setAccessToken(Mapbox.getAccessToken())
                     .setUsername(Constants.MAPBOX_USER)
                     .setStyleId("light-v9")
                     .setLat(nz.co.trademe.mapme.sample.Constants.AUCKLAND_LAT)
