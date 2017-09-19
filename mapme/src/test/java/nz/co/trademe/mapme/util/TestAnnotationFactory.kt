@@ -1,8 +1,12 @@
 package nz.co.trademe.mapme.util
 
-class TestAnnotationFactory : nz.co.trademe.mapme.annotations.AnnotationFactory<TestMap> {
+import nz.co.trademe.mapme.LatLng
+import nz.co.trademe.mapme.annotations.AnnotationFactory
+import nz.co.trademe.mapme.annotations.MarkerAnnotation
 
-    override fun createMarker(latLng: nz.co.trademe.mapme.LatLng, icon: android.graphics.Bitmap?, title: String?): nz.co.trademe.mapme.annotations.MarkerAnnotation {
+class TestAnnotationFactory : AnnotationFactory<TestMap> {
+
+    override fun createMarker(latLng: LatLng): MarkerAnnotation {
         return TestAnnotation()
     }
 

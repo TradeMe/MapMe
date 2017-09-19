@@ -1,11 +1,10 @@
 package nz.co.trademe.mapme.annotations
 
-import android.graphics.Bitmap
 import nz.co.trademe.mapme.LatLng
 
 interface AnnotationFactory<in Map> {
 
-    fun createMarker(latLng: LatLng, icon: Bitmap?, title: String?): MarkerAnnotation
+    fun createMarker(latLng: LatLng): MarkerAnnotation
 
     fun clear(map: Map)
 

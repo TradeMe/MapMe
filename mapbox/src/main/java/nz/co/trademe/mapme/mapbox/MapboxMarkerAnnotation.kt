@@ -10,10 +10,7 @@ import com.mapbox.mapboxsdk.maps.MapboxMap
 import nz.co.trademe.mapme.LatLng
 import nz.co.trademe.mapme.annotations.MarkerAnnotation
 
-class MapboxMarkerAnnotation(latLng: LatLng,
-                             title: String?,
-                             icon: Bitmap? = null) : MarkerAnnotation(latLng, title, icon) {
-
+class MapboxMarkerAnnotation(latLng: LatLng) : MarkerAnnotation(latLng) {
 
     override fun onUpdateIcon(icon: Bitmap?) {
         nativeMarker?.let {
