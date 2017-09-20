@@ -1,6 +1,12 @@
 Change Log
 ==========
 
+Version 1.0.4 *(21-09-2017)*
+----------------------------
+
+  * Updates Google Play Services to 11.4.0
+  * Updates Android Support Library to 26.1.0
+
 Version 1.0.3 *(18-09-2017)*
 ----------------------------
 
