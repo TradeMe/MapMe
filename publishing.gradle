@@ -3,11 +3,11 @@ apply plugin: 'com.jfrog.bintray'
 
 project.afterEvaluate {
     if (project.plugins.hasPlugin("com.android.library")) {
+
         project.android.libraryVariants.all { variant ->
-            variant.getOutputs().each { output ->
-                def outputFile = output.outputFile;
+            variant.outputs.all {
                 def newName = "${project.name}-v${project.version}.aar"
-                output.outputFile = new File(outputFile.parentFile, newName);
+                outputFileName = newName
             }
         }
     }
