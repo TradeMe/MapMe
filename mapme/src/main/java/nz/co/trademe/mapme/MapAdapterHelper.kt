@@ -156,5 +156,9 @@ class MapAdapterHelper(val callbacks: MapAdapterHelperCallback, val debug: Boole
     fun hasPendingUpdates(): Boolean {
         return this.updates.isNotEmpty()
     }
+
+    fun clearPendingUpdates() {
+        this.updates.clear()
+    }
 }
 

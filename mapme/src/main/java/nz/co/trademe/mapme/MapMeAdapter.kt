@@ -216,6 +216,7 @@ abstract class MapMeAdapter<MapType>(var context: Context, var factory: Annotati
 
         factory.clear(map)
         annotations.clear()
+        mapAdapterHelper.clearPendingUpdates()
 
         onInserted(0, getItemCount())
     }
