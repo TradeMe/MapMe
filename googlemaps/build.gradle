@@ -8,7 +8,6 @@ buildscript {
         mavenLocal()
     }
     dependencies {
-        classpath "com.android.tools.build:gradle:$gradle_version"
         classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:$bintray_version"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
@@ -44,6 +43,14 @@ android {
 
     lintOptions {
         lintConfig new File(rootProject.projectDir, "lint.xml")
+    }
+}
+
+
+configurations.all {
+    resolutionStrategy {
+        force "com.android.support:support-media-compat:$android_support_version"
+        force "com.android.support:support-v4:$android_support_version"
     }
 }
 
