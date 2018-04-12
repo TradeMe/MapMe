@@ -1,6 +1,11 @@
 Change Log
 ==========
 
+Version 1.0.5 *(13-04-2018)*
+
+  * Updates to AGP and dependencies
+  * Fixes crash when notifyDataSetChanged called multiple times
+
 Version 1.0.4 *(21-09-2017)*
 ----------------------------
 
