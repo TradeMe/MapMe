@@ -15,13 +15,13 @@ Download
 
 ```groovy
 //base dependency
-compile 'nz.co.trademe.mapme:mapme:1.0.4'
+compile 'nz.co.trademe.mapme:mapme:1.0.5'
   
 //for Google Maps support
-compile 'nz.co.trademe.mapme:googlemaps:1.0.4'
+compile 'nz.co.trademe.mapme:googlemaps:1.0.5'
   
 //for Mapbox support
-compile 'nz.co.trademe.mapme:mapbox:1.0.4'
+compile 'nz.co.trademe.mapme:mapbox:1.0.5'
 
 ```
 
