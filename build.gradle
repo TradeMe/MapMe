@@ -1,3 +1,18 @@
+buildscript {
+    apply from: 'common.gradle'
+
+    repositories {
+        maven {
+            url "https://maven.google.com"
+        }
+        jcenter()
+        mavenLocal()
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:$gradle_version"
+    }
+}
+
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
