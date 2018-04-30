@@ -1,7 +1,13 @@
 Change Log
 ==========
 
+Version 1.0.6 *(1-05-2018)*
+----------------------------
+
+ * Removes Bintray gradle plugin in favour of `maven-publishing` 
+
 Version 1.0.5 *(13-04-2018)*
+----------------------------
 
   * Updates to AGP and dependencies
   * Fixes crash when notifyDataSetChanged called multiple times

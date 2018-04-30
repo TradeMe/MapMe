@@ -1,116 +1,37 @@
-apply plugin: 'maven-publish'
-apply plugin: 'com.jfrog.bintray'
+if (project.plugins.hasPlugin("com.android.library")) {
 
-project.afterEvaluate {
-    if (project.plugins.hasPlugin("com.android.library")) {
+    apply plugin: 'digital.wup.android-maven-publish'
 
-        project.android.libraryVariants.all { variant ->
-            variant.outputs.all {
-                def newName = "${project.name}-v${project.version}.aar"
-                outputFileName = newName
+    project.afterEvaluate {
+        task sourcesJar(type: Jar) {
+            from android.sourceSets.main.java.srcDirs
+        }
+    }
+
+    publishing {
+        publications {
+            aar(MavenPublication) {
+                from project.components.android
+                artifact project.sourcesJar {
+                    // not required, includes sourcesJar with correct classifier
+                    classifier "sources"
+                }
+                groupId project.group
+                artifactId project.name
+                version project.ext.version
             }
         }
-    }
-}
 
-project.group = project.ext.group
-project.version = project.ext.version
+        repositories {
+            maven {
+                name 'Bintray'
+                url "https://api.bintray.com/maven/${project.org}/${project.repo}/${project.name}/;publish=1"
 
-bintray {
-    user = project.hasProperty("BINTRAY_USERNAME") ? project.property('BINTRAY_USERNAME') : null
-    key = project.hasProperty("BINTRAY_API_KEY") ? project.property('BINTRAY_API_KEY') : null
-    pkg {
-        repo = 'MapMe'
-        name = getArtifactId()
-        userOrg = 'trademe'
-        licenses = ['Apache-2.0']
-        vcsUrl = project.ext.scm
-        version {
-            name = project.version
-            desc = project.ext.description
-            released = new Date()
-            vcsTag = project.version
-        }
-        publications = ['Bintray']
-    }
-}
-
-// Create the pom configuration:
-def pomConfig = {
-    licenses {
-        license {
-            name "MIT License"
-            url "http://www.opensource.org/licenses/mit-license.php"
-            distribution "repo"
-        }
-    }
-    scm {
-        url ext.scm
-    }
-}
-
-//create a jar from source files
-task sourceJar(type: Jar) {
-    if (project.plugins.hasPlugin("com.android.library")) {
-        from android.sourceSets.main.java.srcDirs
-        classifier "sources"
-    }
-}
-
-publishing.publications {
-    Bintray(MavenPublication) {
-        groupId project.ext.group
-        artifactId getArtifactId()
-        version project.ext.version
-
-        artifact sourceJar
-        artifact "$buildDir/outputs/aar/${project.name}-v${project.version}.aar"
-
-        //generate pom nodes for dependencies
-        //when a project references another project, it's artifact node is generated
-        pom.withXml {
-            def root = asNode()
-            root.appendNode('description', project.ext.description)
-            root.appendNode('name', project.ext.name)
-            root.appendNode('url', project.ext.scm)
-            root.children().last() + pomConfig
-
-            def dependenciesNode = root.appendNode('dependencies')
-
-            configurations.compile.allDependencies.each { dependency ->
-                if (dependency.group != null && dependency.name != null) {
-
-                    if (dependency instanceof ProjectDependency) {
-                        dependency.getDependencyProject().getArtifacts().each { artifact ->
-                            addDependencyNodeToPom(dependenciesNode, dependency.group, getArtifactId(dependency.dependencyProject), dependency.version)
-                        }
-                    } else {
-                        addDependencyNodeToPom(dependenciesNode, dependency.group, dependency.name, dependency.version)
-                    }
+                credentials {
+                    username BINTRAY_USERNAME
+                    password BINTRAY_API_KEY
                 }
             }
         }
     }
-}
-
-def getArtifactId() {
-    return getArtifactId(project)
-
-}
-
-def getArtifactId(someProject) {
-    if (!someProject.ext.has('artifactId')) {
-        //default artifactId is the project/module name
-        return someProject.getName();
-
-    }
-    return someProject.ext.artifactId;
-}
-
-
-def addDependencyNodeToPom(dependenciesNode, group, artifact, version) {
-    def dependencyNode = dependenciesNode.appendNode('dependency')
-    dependencyNode.appendNode("groupId", group)
-    dependencyNode.appendNode("artifactId", artifact)
-    dependencyNode.appendNode("version", version)
 }
