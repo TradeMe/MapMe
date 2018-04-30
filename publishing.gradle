@@ -16,7 +16,7 @@ if (project.plugins.hasPlugin("com.android.library")) {
                     // not required, includes sourcesJar with correct classifier
                     classifier "sources"
                 }
-                groupId project.group
+                groupId project.ext.group
                 artifactId project.name
                 version project.ext.version
             }
