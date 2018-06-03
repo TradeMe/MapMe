@@ -29,7 +29,7 @@ public class SampleMapMeAdapter<M> extends MapMeAdapter<M> {
     @Override
     public MapAnnotation onCreateAnnotation(@NotNull AnnotationFactory<M> mapFactory, int position, int viewType) {
         MarkerData item = this.markers.get(position);
-        return mapFactory.createMarker(item.getLatLng(), getIconBitmap(item), item.getTitle());
+        return mapFactory.createMarker(item.getLatLng());
     }
 
     @Override
@@ -37,6 +37,7 @@ public class SampleMapMeAdapter<M> extends MapMeAdapter<M> {
         if (annotation instanceof MarkerAnnotation) {
             MarkerData item = this.markers.get(position);
             ((MarkerAnnotation) annotation).setIcon(getIconBitmap(item));
+            ((MarkerAnnotation) annotation).setTitle(item.getTitle());
         }
     }
 

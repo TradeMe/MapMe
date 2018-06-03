@@ -1,6 +1,9 @@
 package nz.co.trademe.mapme.util
 
-class TestAnnotation : nz.co.trademe.mapme.annotations.MarkerAnnotation(nz.co.trademe.mapme.LatLng(0.0, 0.0), "", null, 0f, 1f) {
+import nz.co.trademe.mapme.LatLng
+import nz.co.trademe.mapme.annotations.MarkerAnnotation
+
+class TestAnnotation : MarkerAnnotation(LatLng(0.0, 0.0)) {
 
     override fun annotatesObject(nativeObject: Any): Boolean {
         return false

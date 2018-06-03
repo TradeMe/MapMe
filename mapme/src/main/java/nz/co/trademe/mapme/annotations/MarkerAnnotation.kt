@@ -3,11 +3,7 @@ package nz.co.trademe.mapme.annotations
 import android.graphics.Bitmap
 import nz.co.trademe.mapme.LatLng
 
-abstract class MarkerAnnotation(latLng: LatLng,
-                                      title: String? = null,
-                                      icon: Bitmap? = null,
-                                      zIndex: Float = 0f,
-                                      alpha: Float = 1f) : MapAnnotation() {
+abstract class MarkerAnnotation(latLng: LatLng) : MapAnnotation() {
 
     var latLng: LatLng = latLng
         set(value) {
@@ -15,25 +11,25 @@ abstract class MarkerAnnotation(latLng: LatLng,
             onUpdatePosition(value)
         }
 
-    var title: String? = title
+    var title: String? = null
         set(value) {
             field = value
             onUpdateTitle(value)
         }
 
-    var icon: Bitmap? = icon
+    var icon: Bitmap? = null
         set(value) {
             field = value
             onUpdateIcon(value)
         }
 
-    var zIndex: Float = zIndex
+    var zIndex: Float = 0f
         set(value) {
             field = value
             onUpdateZIndex(value)
         }
 
-    var alpha: Float = alpha
+    var alpha: Float = 1f
         set(value) {
             field = value
             onUpdateAlpha(value)

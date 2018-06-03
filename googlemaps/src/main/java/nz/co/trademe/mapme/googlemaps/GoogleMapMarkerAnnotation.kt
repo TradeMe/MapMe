@@ -8,9 +8,7 @@ import com.google.android.gms.maps.model.MarkerOptions
 import nz.co.trademe.mapme.LatLng
 import nz.co.trademe.mapme.annotations.MarkerAnnotation
 
-class GoogleMapMarkerAnnotation(latLng: LatLng,
-                                title: String?,
-                                icon: Bitmap? = null) : MarkerAnnotation(latLng, title, icon) {
+class GoogleMapMarkerAnnotation(latLng: LatLng) : MarkerAnnotation(latLng) {
 
     override fun onUpdateIcon(icon: Bitmap?) {
         nativeMarker?.setIcon(icon?.toBitmapDescriptor())
