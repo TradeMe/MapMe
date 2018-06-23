@@ -4,10 +4,11 @@ import android.graphics.Bitmap
 import nz.co.trademe.mapme.LatLng
 
 abstract class MarkerAnnotation(latLng: LatLng,
-                                      title: String? = null,
-                                      icon: Bitmap? = null,
-                                      zIndex: Float = 0f,
-                                      alpha: Float = 1f) : MapAnnotation() {
+                                title: String? = null,
+                                icon: Bitmap? = null,
+                                zIndex: Float = 0f,
+                                alpha: Float = 1f,
+                                anchorUV: Pair<Float, Float> = Pair(0.5f, 1.0f)) : MapAnnotation() {
 
     var latLng: LatLng = latLng
         set(value) {
@@ -37,6 +38,12 @@ abstract class MarkerAnnotation(latLng: LatLng,
         set(value) {
             field = value
             onUpdateAlpha(value)
+        }
+
+    var anchor: Pair<Float, Float> = anchorUV
+        set(value) {
+            field = value
+            onUpdateAnchor(value)
         }
 
     /**
@@ -74,8 +81,16 @@ abstract class MarkerAnnotation(latLng: LatLng,
      */
     abstract protected fun onUpdateAlpha(alpha: Float)
 
+    /**
+     * Called when an anchor has been set on the annotation.
+     *
+     * Update the native marker with the [anchor]
+     */
+    abstract protected fun onUpdateAnchor(anchorUV: Pair<Float, Float>)
+
+
     override fun toString(): String {
-        return "MarkerAnnotation(latLng=$latLng, title=$title, icon=$icon, zIndex=$zIndex, alpha=$alpha)"
+        return "MarkerAnnotation(latLng=$latLng, title=$title, icon=$icon, zIndex=$zIndex, alpha=$alpha, anchor(U,V)=${anchor.first},${anchor.second})"
     }
 
 }

@@ -14,7 +14,6 @@ class MapboxMarkerAnnotation(latLng: LatLng,
                              title: String?,
                              icon: Bitmap? = null) : MarkerAnnotation(latLng, title, icon) {
 
-
     override fun onUpdateIcon(icon: Bitmap?) {
         nativeMarker?.let {
             if (icon != null) {
@@ -39,6 +38,10 @@ class MapboxMarkerAnnotation(latLng: LatLng,
 
     override fun onUpdateAlpha(alpha: Float) {
         Log.w(MapboxMarkerAnnotation::class.simpleName, "alpha not supported on MapboxMarkerAnnotations")
+    }
+
+    override fun onUpdateAnchor(anchorUV: Pair<Float, Float>) {
+        Log.w(MapboxMarkerAnnotation::class.simpleName, "anchor not supported on MapboxMarkerAnnotations")
     }
 
     private var nativeMarker: Marker? = null
