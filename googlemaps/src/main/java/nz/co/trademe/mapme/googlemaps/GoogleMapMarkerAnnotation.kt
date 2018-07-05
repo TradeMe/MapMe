@@ -32,6 +32,10 @@ class GoogleMapMarkerAnnotation(latLng: LatLng,
         nativeMarker?.alpha = alpha
     }
 
+    override fun onUpdateAnchor(anchorUV: Pair<Float, Float>) {
+        nativeMarker?.setAnchor(anchorUV.first, anchorUV.second)
+    }
+
     private var nativeMarker: Marker? = null
 
     override fun annotatesObject(objec: Any): Boolean {
