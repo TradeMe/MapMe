@@ -1,7 +1,6 @@
 package nz.co.trademe.mapme.util
 
-class TestAnnotation : nz.co.trademe.mapme.annotations.MarkerAnnotation(nz.co.trademe.mapme.LatLng(0.0, 0.0), "", null, 0f, 1f) {
-
+class TestAnnotation : nz.co.trademe.mapme.annotations.MarkerAnnotation(nz.co.trademe.mapme.LatLng(0.0, 0.0), "", null, 0f, 1f, Pair(0.5f, 1f)) {
     override fun annotatesObject(nativeObject: Any): Boolean {
         return false
     }
@@ -27,10 +26,10 @@ class TestAnnotation : nz.co.trademe.mapme.annotations.MarkerAnnotation(nz.co.tr
     override fun onUpdateAlpha(alpha: Float) {
     }
 
-    override fun toString(): String {
-        return "TestAnnotation( position = $position)"
-
+    override fun onUpdateAnchor(anchorUV: Pair<Float, Float>) {
     }
 
-
+    override fun toString(): String {
+        return "TestAnnotation( position = $position)"
+    }
 }
