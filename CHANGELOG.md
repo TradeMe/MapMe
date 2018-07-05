@@ -1,7 +1,12 @@
 Change Log
 ==========
 
-Version 1.0.6 *(1-05-2018)*
+Version 1.1.0 *(06-07-2018)*
+----------------------------
+
+* Adds support for custom anchoring of Markers
+
+Version 1.0.6 *(01-05-2018)*
 ----------------------------
 
  * Removes Bintray gradle plugin in favour of `maven-publishing` 
