@@ -1,6 +1,6 @@
 package nz.co.trademe.mapme.annotations;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 public interface OnMapAnnotationClickListener {
 

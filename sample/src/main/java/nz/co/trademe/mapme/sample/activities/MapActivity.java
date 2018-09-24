@@ -1,8 +1,8 @@
 package nz.co.trademe.mapme.sample.activities;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.util.DiffUtil;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.DiffUtil;
 import android.view.View;
 
 import org.jetbrains.annotations.NotNull;
@@ -11,7 +11,6 @@ import java.util.List;
 
 import nz.co.trademe.mapme.annotations.AnnotationFactory;
 import nz.co.trademe.mapme.annotations.MapAnnotation;
-import nz.co.trademe.mapme.annotations.OnInfoWindowClickListener;
 import nz.co.trademe.mapme.annotations.OnMapAnnotationClickListener;
 import nz.co.trademe.mapme.sample.MarkerBottomSheet;
 import nz.co.trademe.mapme.sample.MarkerData;

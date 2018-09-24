@@ -13,6 +13,6 @@ ext.dokka_version = '0.9.15'
 ext.gradle_version = '3.2.0'
 ext.mapbox_version = '6.4.0'
 ext.google_play_services_version = '15.0.1'
-ext.android_support_version = '28.0.0'
+ext.androidx_version = '1.0.0'
 ext.android_maven_version = '3.3.0'
 
