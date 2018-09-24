@@ -59,6 +59,11 @@ android {
     lintOptions {
         lintConfig new File(rootProject.projectDir, "lint.xml")
     }
+
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
 }
 
 repositories {
