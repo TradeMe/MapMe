@@ -1,7 +1,7 @@
 package nz.co.trademe.mapme.sample.activities;
 
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.util.DiffUtil;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DiffUtil;
 import android.view.Menu;
 import android.view.MenuItem;
 

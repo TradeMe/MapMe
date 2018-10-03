@@ -1,12 +1,12 @@
 package nz.co.trademe.mapme
 
 import android.content.Context
-import android.support.annotation.RestrictTo
-import android.support.annotation.VisibleForTesting
-import android.support.v7.util.ListUpdateCallback
-import android.support.v7.widget.RecyclerView
+import androidx.annotation.RestrictTo
+import androidx.annotation.VisibleForTesting
 import android.util.Log
 import android.view.View
+import androidx.recyclerview.widget.ListUpdateCallback
+import androidx.recyclerview.widget.RecyclerView
 import nz.co.trademe.mapme.annotations.*
 
 const val TAG = "MapMeAdapter"

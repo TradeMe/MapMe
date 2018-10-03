@@ -3,7 +3,7 @@ package nz.co.trademe.mapme.sample.activities;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.view.View;
 
 import com.google.android.gms.maps.CameraUpdateFactory;

@@ -1,9 +1,7 @@
 buildscript {
     apply from: '../common.gradle'
     repositories {
-        maven {
-            url "https://maven.google.com"
-        }
+        google()
         jcenter()
         mavenLocal()
     }
@@ -30,7 +28,7 @@ android {
         minSdkVersion minSdk
         targetSdkVersion compileSdk
 
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
     }
     buildTypes {
@@ -45,24 +43,14 @@ android {
     }
 }
 
-
-configurations.all {
-    resolutionStrategy {
-        force "com.android.support:support-media-compat:$android_support_version"
-        force "com.android.support:support-v4:$android_support_version"
-    }
-}
-
 repositories {
-    maven {
-        url "https://maven.google.com"
-    }
+    google()
     jcenter()
 }
 
 dependencies {
     compile "com.google.android.gms:play-services-maps:$google_play_services_version"
-    compile "com.android.support:appcompat-v7:$android_support_version"
+    compile "androidx.appcompat:appcompat:$androidx_version"
 
     compile project(':mapme')
 
