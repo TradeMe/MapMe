@@ -1,6 +1,12 @@
 Change Log
 ==========
 
+Version 1.2.0 *(25-10-2018)*
+----------------------------
+
+* Updates to Kotlin JDK dependency variants
+* Updates support library to AndroidX variants
+
 Version 1.1.0 *(06-07-2018)*
 ----------------------------
 
