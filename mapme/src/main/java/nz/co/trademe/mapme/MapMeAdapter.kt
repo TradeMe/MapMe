@@ -35,7 +35,7 @@ abstract class MapMeAdapter<MapType>(var context: Context, var factory: Annotati
 
     abstract fun getItemCount(): Int
 
-    fun attach(mapView: View, map: MapType) {
+    fun attach(mapView: View?, map: MapType) {
         this.map = map
         this.mapView = mapView
         this.factory.setOnMarkerClickListener(map, { marker -> notifyAnnotatedMarkerClicked(marker) })
@@ -516,7 +516,7 @@ abstract class MapMeAdapter<MapType>(var context: Context, var factory: Annotati
     }
 
     @VisibleForTesting
-    open internal fun triggerUpdateProcessor(runnable: Runnable) {
+    internal open fun triggerUpdateProcessor(runnable: Runnable) {
         mapView?.post(runnable)
     }
 
