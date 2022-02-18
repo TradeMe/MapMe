@@ -21,12 +21,12 @@ apply plugin: 'kotlin-android'
 apply from: '../publishing.gradle'
 
 android {
-    compileSdkVersion compileSdk
+    compileSdkVersion project.ext.compileSdk
     buildToolsVersion buildTools
 
     defaultConfig {
-        minSdkVersion minSdk
-        targetSdkVersion compileSdk
+        minSdkVersion project.ext.minSdk
+        targetSdkVersion project.ext.compileSdk
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -49,12 +49,12 @@ repositories {
 }
 
 dependencies {
-    compile "com.google.android.gms:play-services-maps:$google_play_services_version"
-    compile "androidx.appcompat:appcompat:$androidx_version"
+    implementation "com.google.android.gms:play-services-maps:$google_play_services_version"
+    implementation "androidx.appcompat:appcompat:$androidx_version"
 
-    compile project(':mapme')
+    implementation project(':mapme')
 
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
 
 

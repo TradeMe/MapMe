@@ -1,6 +1,7 @@
 buildscript {
     apply from: '../common.gradle'
     repositories {
+        maven { url "https://plugins.gradle.org/m2/" }
         google()
         jcenter()
         mavenLocal()
@@ -25,12 +26,12 @@ apply from: '../publishing.gradle'
 
 
 android {
-    compileSdkVersion compileSdk
+    compileSdkVersion project.ext.compileSdk
     buildToolsVersion buildTools
 
     defaultConfig {
-        minSdkVersion minSdk
-        targetSdkVersion compileSdk
+        minSdkVersion project.ext.minSdk
+        targetSdkVersion project.ext.compileSdk
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -62,13 +63,13 @@ repositories {
 }
 
 dependencies {
-    testCompile 'junit:junit:4.12'
-    testCompile "org.mockito:mockito-core:2.7.22"
-    testCompile "com.nhaarman:mockito-kotlin:1.4.0"
-    testCompile 'org.amshove.kluent:kluent:1.20'
+    testImplementation 'junit:junit:4.12'
+    testImplementation "org.mockito:mockito-core:2.7.22"
+    testImplementation "com.nhaarman:mockito-kotlin:1.4.0"
+    testImplementation 'org.amshove.kluent:kluent:1.20'
 
-    compile "androidx.recyclerview:recyclerview:$androidx_version"
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "androidx.recyclerview:recyclerview:$androidx_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
 
 
