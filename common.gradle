@@ -9,12 +9,12 @@ ext.description = 'MapMe is an Android library that brings the adapter pattern t
 ext.connection = 'scm:git:github.com/TradeMe/MapMe.git'
 ext.developerConnection = 'scm:git:ssh://github.com/TradeMe/MapMe.git'
 
-ext.compileSdk = 31
-ext.minSdk = 15
+ext.compileSdk = 30
+ext.minSdk = 19
 ext.buildTools = "29.0.3"
 ext.kotlin_version = '1.5.0'
 ext.dokka_version = '0.9.15'
-ext.gradle_version = '7.0.1'
+ext.gradle_version = '4.0.1'
 ext.mapbox_version = '6.4.0'
 ext.google_play_services_version = '15.0.1'
 ext.androidx_version = '1.0.0'

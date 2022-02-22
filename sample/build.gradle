@@ -16,12 +16,12 @@ apply plugin: 'kotlin-android'
 apply from: '../common.gradle'
 
 android {
-    compileSdkVersion project.ext.compileSdk
+    compileSdkVersion compileSdk
     buildToolsVersion buildTools
     defaultConfig {
         applicationId "nz.co.trademe.mapme.sample"
         minSdkVersion 21
-        targetSdkVersion project.ext.compileSdk
+        targetSdkVersion compileSdk
         versionCode 1
         versionName "1.0"
 
@@ -70,18 +70,19 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.jakewharton.timber:timber:4.5.1'
-    implementation 'com.squareup.picasso:picasso:2.5.2'
+    implementation project(path: ':mapme')
+    compile 'com.jakewharton.timber:timber:4.5.1'
+    compile 'com.squareup.picasso:picasso:2.5.2'
 
-    implementation "androidx.appcompat:appcompat:$androidx_version"
-    implementation "com.google.android.material:material:$androidx_version"
+    compile "androidx.appcompat:appcompat:$androidx_version"
+    compile "com.google.android.material:material:$androidx_version"
 
-    implementation "com.google.android.gms:play-services-maps:$google_play_services_version"
+    compile "com.google.android.gms:play-services-maps:$google_play_services_version"
 
-    implementation 'com.mapbox.mapboxsdk:mapbox-android-services:2.2.3'
+    compile 'com.mapbox.mapboxsdk:mapbox-android-services:2.2.3'
 
-    implementation project(':googlemaps')
-    implementation project(':mapbox')
+    compile project(':googlemaps')
+    compile project(':mapbox')
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }

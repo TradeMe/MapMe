@@ -21,12 +21,12 @@ apply plugin: 'kotlin-android'
 apply from: '../publishing.gradle'
 
 android {
-    compileSdkVersion project.ext.compileSdk
+    compileSdkVersion compileSdk
     buildToolsVersion buildTools
 
     defaultConfig {
-        minSdkVersion project.ext.minSdk
-        targetSdkVersion project.ext.compileSdk
+        minSdkVersion minSdk
+        targetSdkVersion compileSdk
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -42,6 +42,10 @@ android {
         lintConfig new File(rootProject.projectDir, "lint.xml")
     }
 
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
 }
 
 repositories {
@@ -50,7 +54,7 @@ repositories {
 }
 
 dependencies {
-    implementation("com.mapbox.mapboxsdk:mapbox-android-sdk:$mapbox_version@aar") {
+    compile("com.mapbox.mapboxsdk:mapbox-android-sdk:$mapbox_version@aar") {
         transitive = true
     }
 

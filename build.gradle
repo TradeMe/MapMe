@@ -23,25 +23,6 @@ allprojects {
         google()
         jcenter()
     }
-
-    afterEvaluate {
-        // Common library module configurations
-        if (plugins.hasPlugin("com.android.library") || plugins.hasPlugin("com.android.application")) {
-            android.compileSdkVersion = project.ext.compileSdk
-
-
-            android.defaultConfig {
-                minSdkVersion project.ext.minSdk
-                targetSdkVersion project.ext.compileSdk
-                vectorDrawables.useSupportLibrary = true
-            }
-
-            android.compileOptions {
-                sourceCompatibility JavaVersion.VERSION_1_8
-                targetCompatibility JavaVersion.VERSION_1_8
-            }
-        }
-    }
 }
 
 task clean(type: Delete) {

@@ -1,7 +1,6 @@
 buildscript {
     apply from: '../common.gradle'
     repositories {
-        maven { url "https://plugins.gradle.org/m2/" }
         google()
         jcenter()
         mavenLocal()
@@ -26,12 +25,12 @@ apply from: '../publishing.gradle'
 
 
 android {
-    compileSdkVersion project.ext.compileSdk
+    compileSdkVersion compileSdk
     buildToolsVersion buildTools
 
     defaultConfig {
-        minSdkVersion project.ext.minSdk
-        targetSdkVersion project.ext.compileSdk
+        minSdkVersion minSdk
+        targetSdkVersion compileSdk
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
