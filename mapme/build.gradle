@@ -62,13 +62,13 @@ repositories {
 }
 
 dependencies {
-    testImplementation 'junit:junit:4.12'
-    testImplementation "org.mockito:mockito-core:2.7.22"
-    testImplementation "com.nhaarman:mockito-kotlin:1.4.0"
-    testImplementation 'org.amshove.kluent:kluent:1.20'
+    testCompile 'junit:junit:4.12'
+    testCompile "org.mockito:mockito-core:2.7.22"
+    testCompile "com.nhaarman:mockito-kotlin:1.4.0"
+    testCompile 'org.amshove.kluent:kluent:1.20'
 
-    implementation "androidx.recyclerview:recyclerview:$androidx_version"
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    compile "androidx.recyclerview:recyclerview:$androidx_version"
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
 
 

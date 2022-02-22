@@ -58,7 +58,7 @@ dependencies {
         transitive = true
     }
 
-    implementation project(':mapme')
+    compile project(':mapme')
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }

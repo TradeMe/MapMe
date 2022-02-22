@@ -49,12 +49,12 @@ repositories {
 }
 
 dependencies {
-    implementation "com.google.android.gms:play-services-maps:$google_play_services_version"
-    implementation "androidx.appcompat:appcompat:$androidx_version"
+    compile "com.google.android.gms:play-services-maps:$google_play_services_version"
+    compile "androidx.appcompat:appcompat:$androidx_version"
 
-    implementation project(':mapme')
+    compile project(':mapme')
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
 
 
