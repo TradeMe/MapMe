@@ -24,10 +24,17 @@ if (secretPropsFile.exists()) {
     ext["snapshot"] = System.getenv('SNAPSHOT')
 }
 
+if (snapshot) {
+    ext["rootVersionName"] = project.ext.version + "-SNAPSHOT"
+} else {
+    ext["rootVersionName"] = project.ext.version
+}
+
 // Set up Sonatype repository
 nexusPublishing {
     repositories {
         sonatype {
+            version = rootVersionName
             stagingProfileId = sonatypeStagingProfileId
             username = ossrhUsername
             password = ossrhPassword
