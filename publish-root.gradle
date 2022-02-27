@@ -24,7 +24,7 @@ if (secretPropsFile.exists()) {
     ext["snapshot"] = System.getenv('SNAPSHOT')
 }
 
-if (snapshot) {
+if (Boolean.parseBoolean(snapshot)) {
     ext["rootVersionName"] = project.ext.version + "-SNAPSHOT"
 } else {
     ext["rootVersionName"] = project.ext.version
@@ -34,7 +34,9 @@ if (snapshot) {
 nexusPublishing {
     repositories {
         sonatype {
-            version = rootVersionName
+            useStaging.set(provider {
+                !Boolean.parseBoolean(snapshot)
+            })
             stagingProfileId = sonatypeStagingProfileId
             username = ossrhUsername
             password = ossrhPassword
