@@ -60,8 +60,8 @@ afterEvaluate {
                     developers {
                         developer {
                             id = 'sabinmj'
-                            name = 'Sabin'
-                            email = 'sabin.mj@gmail.com'
+                            name = 'Sabin Mulakukodiyan'
+                            email = 'sabin.mulakukodiyan@trademe.co.nz'
                         }
                         // Add all other devs here...
                     }
