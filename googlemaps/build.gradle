@@ -13,8 +13,10 @@ buildscript {
 apply from: '../common.gradle'
 
 ext {
-    name = "MapMe GoogleMaps"
+    PUBLISH_VERSION = rootVersionName
+    ARTIFACT_ID = "googlemaps"
 }
+
 
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'

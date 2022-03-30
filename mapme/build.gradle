@@ -15,7 +15,8 @@ buildscript {
 apply from: '../common.gradle'
 
 ext {
-    name = "MapMe"
+    PUBLISH_VERSION = rootVersionName
+    ARTIFACT_ID = "mapme"
 }
 
 

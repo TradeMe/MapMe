@@ -70,6 +70,7 @@ repositories {
 }
 
 dependencies {
+    compile project(path: ':mapme')
     compile 'com.jakewharton.timber:timber:4.5.1'
     compile 'com.squareup.picasso:picasso:2.5.2'
 

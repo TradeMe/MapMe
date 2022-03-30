@@ -1,16 +1,20 @@
-ext.version = "1.2.0"
+ext.version = "1.2.1"
 ext.group = "nz.co.trademe.mapme"
-ext.repo = "MapMe"
+ext.repo = "mapme"
 ext.org = "trademe"
 ext.scm = 'https://github.com/TradeMe/MapMe.git'
+ext.url = 'https://github.com/TradeMe/MapMe'
 ext.description = 'MapMe is an Android library that brings the adapter pattern to Maps, simplifying the management of markers and annotations.'
 
-ext.compileSdk = 28
-ext.minSdk = 15
-ext.buildTools = "28.0.3"
-ext.kotlin_version = '1.2.71'
+ext.connection = 'scm:git:github.com/TradeMe/MapMe.git'
+ext.developerConnection = 'scm:git:ssh://github.com/TradeMe/MapMe.git'
+
+ext.compileSdk = 30
+ext.minSdk = 19
+ext.buildTools = "29.0.3"
+ext.kotlin_version = '1.5.0'
 ext.dokka_version = '0.9.15'
-ext.gradle_version = '3.2.0'
+ext.gradle_version = '4.0.1'
 ext.mapbox_version = '6.4.0'
 ext.google_play_services_version = '15.0.1'
 ext.androidx_version = '1.0.0'

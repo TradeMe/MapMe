@@ -1,37 +1,95 @@
-if (project.plugins.hasPlugin("com.android.library")) {
 
-    apply plugin: 'digital.wup.android-maven-publish'
+apply plugin: 'maven-publish'
+apply plugin: 'signing'
+apply plugin: 'org.jetbrains.dokka'
 
-    project.afterEvaluate {
-        task sourcesJar(type: Jar) {
-            from android.sourceSets.main.java.srcDirs
-        }
+task androidSourcesJar(type: Jar) {
+    archiveClassifier.set('sources')
+    if (project.plugins.findPlugin("com.android.library")) {
+
+        // For Android libraries
+        from android.sourceSets.main.java.srcDirs
+        from android.sourceSets.main.kotlin.srcDirs
+    } else {
+        from sourceSets.main.java.srcDirs
+        from sourceSets.main.kotlin.srcDirs
     }
 
+
+}
+task javadocJar(type: Jar, dependsOn: dokkaJavadoc) {
+    archiveClassifier.set('javadoc')
+    from dokkaJavadoc.outputDirectory
+}
+
+artifacts {
+    archives androidSourcesJar
+    archives javadocJar
+}
+
+
+afterEvaluate {
     publishing {
+
         publications {
-            aar(MavenPublication) {
-                from project.components.android
-                artifact project.sourcesJar {
-                    // not required, includes sourcesJar with correct classifier
-                    classifier "sources"
-                }
+            release(MavenPublication) {
                 groupId project.ext.group
-                artifactId project.name
-                version project.ext.version
-            }
-        }
+                artifactId ARTIFACT_ID
+                version PUBLISH_VERSION
 
-        repositories {
-            maven {
-                name 'Bintray'
-                url "https://api.bintray.com/maven/${project.org}/${project.repo}/${project.name}/;publish=1"
+                if (project.plugins.findPlugin("com.android.library")) {
+                    from components.release
+                } else {
+                    from components.java
+                }
 
-                credentials {
-                    username BINTRAY_USERNAME
-                    password BINTRAY_API_KEY
+                artifact androidSourcesJar
+                artifact javadocJar
+
+                // metadata
+                pom {
+                    name = ARTIFACT_ID
+                    description = 'SDK'
+                    url = project.ext.url
+                    licenses {
+                        license {
+                            name = 'MapMe License'
+                            url = 'https://github.com/sabintrademe/MapMe/blob/master/LICENSE'
+                        }
+                    }
+                    developers {
+                        developer {
+                            id = 'sabinmj'
+                            name = 'Sabin Mulakukodiyan'
+                            email = 'sabin.mulakukodiyan@trademe.co.nz'
+                        }
+                        // Add all other devs here...
+                    }
+
+                    // Version control info - if you're using GitHub, follow the
+                    // format as seen here
+                    scm {
+                        connection = project.ext.connection
+                        developerConnection = project.ext.developerConnection
+                        url = project.ext.url
+
+                    }
                 }
             }
         }
     }
+}
+signing {
+    if (rootProject.ext["signing.keyId"] && rootProject.ext["signing.key"] && rootProject.ext["signing.password"]) {
+        useInMemoryPgpKeys(
+                rootProject.ext["signing.keyId"],
+                rootProject.ext["signing.key"],
+                rootProject.ext["signing.password"],
+        )
+        sign publishing.publications
+    }
+}
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
 }
